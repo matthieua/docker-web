@@ -11,12 +11,6 @@ RUN apt-get install libssl-dev libpcrecpp0 libpcre3-dev wget git libreadline-dev
 RUN apt-get install libsasl2-2 libsasl2-dev libpq-dev -y --force-yes
 RUN mkdir /root/src
 
-# postgres
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        postgresql-client \
-    && rm -rf /var/lib/apt/lists/*
-
 # phantomjs
 ENV PHANTOMJS_VERSION 2.1.1
 RUN \
@@ -41,3 +35,9 @@ RUN echo "DISPLAY=:99.0" | tee -a /etc/environment
 # node
 RUN apt-get update && apt-get install -y nodejs --no-install-recommends && rm -rf /var/lib/apt/lists/*
 RUN npm install -g bower
+
+# postgres
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
