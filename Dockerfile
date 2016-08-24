@@ -38,7 +38,8 @@ RUN rm -rf /root/src/*
 RUN npm install -g bower
 
 # ruby
-RUN cd /root/src && wget http://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.gz && tar xzvf ruby-*.tar.gz && cd ruby-2.3.1 && ./configure --with-readline-dir=/usr/include/readline --with-openssl-dir=/usr/include/openssl && make && make test && make install
+ENV RUBY_VERSION 2.3.1
+RUN cd /root/src && wget http://cache.ruby-lang.org/pub/ruby/2.3/ruby-$RUBY_VERSION.tar.gz && tar xzvf ruby-*.tar.gz && cd ruby-$RUBY_VERSION && ./configure --with-readline-dir=/usr/include/readline --with-openssl-dir=/usr/include/openssl && make && make test && make install
 RUN rm -rf /root/src/*
 RUN echo "gem: --no-rdoc --no-ri" >> /root/.gemrc
 RUN gem install bundler -v "1.12.5"
