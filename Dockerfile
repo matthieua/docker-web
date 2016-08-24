@@ -1,4 +1,4 @@
-FROM sameersbn/postgresql:9.5-1
+FROM ruby:2.3.1
 MAINTAINER Matthieu Aussaguel
 LABEL Description="Ruby / PhantomJS"
 
@@ -10,6 +10,12 @@ RUN apt-get install gcc g++ make curl zlib1g zlib1g-dev vim openssl libcurl4-ope
 RUN apt-get install libssl-dev libpcrecpp0 libpcre3-dev wget git libreadline-dev libqtwebkit-dev xvfb imagemagick -y --force-yes
 RUN apt-get install libsasl2-2 libsasl2-dev libpq-dev -y --force-yes
 RUN mkdir /root/src
+
+# postgres
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
 
 # phantomjs
 ENV PHANTOMJS_VERSION 2.1.1
@@ -36,12 +42,3 @@ RUN echo "DISPLAY=:99.0" | tee -a /etc/environment
 RUN cd /root/src && wget http://nodejs.org/dist/v0.12.7/node-v0.12.7-linux-x64.tar.gz && tar -xzvf node-v0.12.7-linux-x64.tar.gz && sudo mv ./node-v0.12.7-linux-x64/lib/* /usr/lib/ && sudo mv ./node-v0.12.7-linux-x64/bin/* /usr/bin/
 RUN rm -rf /root/src/*
 RUN npm install -g bower
-
-# ruby
-ENV RUBY_VERSION 2.3.1
-RUN cd /root/src && wget http://cache.ruby-lang.org/pub/ruby/2.3/ruby-$RUBY_VERSION.tar.gz && tar xzvf ruby-*.tar.gz && cd ruby-$RUBY_VERSION && ./configure --with-readline-dir=/usr/include/readline --with-openssl-dir=/usr/include/openssl && make && make test && make install
-RUN rm -rf /root/src/*
-RUN echo "gem: --no-rdoc --no-ri" >> /root/.gemrc
-RUN gem install bundler
-RUN echo "RAILS_ENV=test" | tee -a /etc/environment
-RUN echo "RACK_ENV=test" | tee -a /etc/environment
