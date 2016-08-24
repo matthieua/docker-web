@@ -33,7 +33,7 @@ RUN \
 
 # firefox
 RUN apt-get update && apt-get install firefox -y --force-yes --fix-missing
-RUN echo "DISPLAY=:99.0" | tee -a /etc/environment
+ENV DISPLAY ":99.0"
 
 # node
 RUN cd /root/src && wget http://nodejs.org/dist/v0.12.7/node-v0.12.7-linux-x64.tar.gz && tar -xzvf node-v0.12.7-linux-x64.tar.gz && sudo mv ./node-v0.12.7-linux-x64/lib/* /usr/lib/ && sudo mv ./node-v0.12.7-linux-x64/bin/* /usr/bin/
