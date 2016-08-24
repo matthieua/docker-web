@@ -8,15 +8,20 @@ RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN apt-get update
 RUN apt-get install gcc g++ make curl zlib1g zlib1g-dev vim openssl libcurl4-openssl-dev libreadline6-dev unzip libffi-dev -y --force-yes
 RUN apt-get install libssl-dev libpcrecpp0 libpcre3-dev wget git libreadline-dev libqtwebkit-dev xvfb imagemagick -y --force-yes
-RUN apt-get install libsasl2-2 libsasl2-dev
+RUN apt-get install libsasl2-2 libsasl2-dev -y --force-yes
 RUN mkdir /root/src
 
 # phantomjs 2.1.1
-RUN apt-get install build-essential g++ flex bison gperf ruby perl libsqlite3-dev libfontconfig1-dev libicu-dev libfreetype6 libssl-dev libpng-dev libjpeg-dev python libx11-dev libxext-dev -y --force-yes
-RUN cd /root/src && git clone git://github.com/ariya/phantomjs.git
-RUN cd /root/src/phantomjs && git checkout 2.1.1 && ./build.sh --confirm --jobs 2
-RUN mv /root/src/phantomjs/bin/phantomjs /usr/local/bin/phantomjs
-RUN rm -rf /root/src/*
+# RUN apt-get install build-essential g++ flex bison gperf ruby perl libsqlite3-dev libfontconfig1-dev libicu-dev libfreetype6 libssl-dev libpng-dev libjpeg-dev python libx11-dev libxext-dev -y --force-yes
+# RUN cd /root/src && git clone git://github.com/ariya/phantomjs.git
+# RUN cd /root/src/phantomjs && git checkout 2.1 && ./build.sh --confirm --jobs 2
+# RUN mv /root/src/phantomjs/bin/phantomjs /usr/local/bin/phantomjs
+# RUN rm -rf /root/src/*
+
+RUN cd /root/src
+RUN wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
+RUN tar xfj phantomjs-2.1.1-linux-x86_64.tar.bz2
+RUN cp /root/src/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin
 
 # firefox
 RUN apt-get update && apt-get install firefox -y --force-yes --fix-missing
