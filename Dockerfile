@@ -31,7 +31,4 @@ RUN apt-get update && apt-get install -y nodejs --no-install-recommends && rm -r
 RUN npm install -g bower
 
 # postgres
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        postgresql-client \
-    && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y --no-install-recommends postgresql-client && rm -rf /var/lib/apt/lists/*
