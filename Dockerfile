@@ -3,13 +3,13 @@ MAINTAINER Matthieu Aussaguel
 LABEL Description="Ruby / PhantomJS"
 
 # general
-RUN apt-get clean
-RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-RUN apt-get update
-RUN apt-get install gcc g++ make curl zlib1g zlib1g-dev vim openssl libcurl4-openssl-dev libreadline6-dev unzip libffi-dev -y --force-yes
-RUN apt-get install libssl-dev libpcrecpp0 libpcre3-dev wget git libreadline-dev libqtwebkit-dev xvfb imagemagick -y --force-yes
-RUN apt-get install libsasl2-2 libsasl2-dev libpq-dev -y --force-yes
-RUN mkdir /root/src
+# RUN apt-get clean
+# RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+# RUN apt-get update
+# RUN apt-get install gcc g++ make curl zlib1g zlib1g-dev vim openssl libcurl4-openssl-dev libreadline6-dev unzip libffi-dev -y --force-yes
+# RUN apt-get install libssl-dev libpcrecpp0 libpcre3-dev wget git libreadline-dev libqtwebkit-dev xvfb imagemagick -y --force-yes
+# RUN apt-get install libsasl2-2 libsasl2-dev libpq-dev -y --force-yes
+# RUN mkdir /root/src
 
 # phantomjs
 # Install phantomjs. See http://phantomjs.org/download.html
