@@ -2,6 +2,7 @@ FROM ubuntu:14.04.2
 MAINTAINER Matthieu Aussaguel
 LABEL Description="Ruby / PhantomJS"
 
+# general
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 RUN apt-get update
