@@ -1,4 +1,4 @@
-FROM ubuntu:14.04.2
+FROM sameersbn/postgresql:9.5-1
 MAINTAINER Matthieu Aussaguel
 LABEL Description="Ruby / PhantomJS"
 
