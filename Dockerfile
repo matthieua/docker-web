@@ -39,6 +39,5 @@ RUN apt-get update && apt-get install firefox -y --force-yes --fix-missing
 RUN echo "DISPLAY=:99.0" | tee -a /etc/environment
 
 # node
-RUN cd /root/src && wget http://nodejs.org/dist/v0.12.7/node-v0.12.7-linux-x64.tar.gz && tar -xzvf node-v0.12.7-linux-x64.tar.gz && sudo mv ./node-v0.12.7-linux-x64/lib/* /usr/lib/ && sudo mv ./node-v0.12.7-linux-x64/bin/* /usr/bin/
-RUN rm -rf /root/src/*
+RUN apt-get update && apt-get install -y nodejs --no-install-recommends && rm -rf /var/lib/apt/lists/*
 RUN npm install -g bower
