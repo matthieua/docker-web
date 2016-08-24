@@ -11,7 +11,7 @@ RUN apt-get install libssl-dev libpcrecpp0 libpcre3-dev wget git libreadline-dev
 RUN apt-get install libsasl2-2 libsasl2-dev -y --force-yes
 RUN mkdir /root/src
 
-# phantomjs 2.1.1
+# phantomjs
 ENV PHANTOMJS_VERSION 2.1.1
 RUN \
   apt-get update && \
@@ -42,6 +42,6 @@ ENV RUBY_VERSION 2.3.1
 RUN cd /root/src && wget http://cache.ruby-lang.org/pub/ruby/2.3/ruby-$RUBY_VERSION.tar.gz && tar xzvf ruby-*.tar.gz && cd ruby-$RUBY_VERSION && ./configure --with-readline-dir=/usr/include/readline --with-openssl-dir=/usr/include/openssl && make && make test && make install
 RUN rm -rf /root/src/*
 RUN echo "gem: --no-rdoc --no-ri" >> /root/.gemrc
-RUN gem install bundler -v "1.12.5"
+RUN gem install bundler
 RUN echo "RAILS_ENV=test" | tee -a /etc/environment
 RUN echo "RACK_ENV=test" | tee -a /etc/environment
