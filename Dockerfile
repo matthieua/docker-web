@@ -31,10 +31,6 @@ RUN \
   apt-get autoremove -y && \
   apt-get clean all
 
-# firefox
-RUN apt-get update && apt-get install firefox -y --force-yes --fix-missing
-ENV DISPLAY ":99.0"
-
 # node
 RUN cd /root/src && wget http://nodejs.org/dist/v0.12.7/node-v0.12.7-linux-x64.tar.gz && tar -xzvf node-v0.12.7-linux-x64.tar.gz && sudo mv ./node-v0.12.7-linux-x64/lib/* /usr/lib/ && sudo mv ./node-v0.12.7-linux-x64/bin/* /usr/bin/
 RUN rm -rf /root/src/*
@@ -48,3 +44,8 @@ RUN echo "gem: --no-rdoc --no-ri" >> /root/.gemrc
 RUN gem install bundler
 RUN echo "RAILS_ENV=test" | tee -a /etc/environment
 RUN echo "RACK_ENV=test" | tee -a /etc/environment
+
+# firefox
+RUN apt-get update && apt-get install firefox -y --force-yes --fix-missing
+ENV DISPLAY ":99.0"
+
