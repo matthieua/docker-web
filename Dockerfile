@@ -12,7 +12,7 @@ RUN apt-get install libsasl2-2 libsasl2-dev libpq-dev -y --force-yes
 RUN mkdir /root/src
 
 # postgres
-# RUN apt-get install -y --no-install-recommends postgresql-client && rm -rf /var/lib/apt/lists/*
+RUN apt-get install -y --no-install-recommends postgresql-client && rm -rf /var/lib/apt/lists/*
 
 # phantomjs
 ENV PHANTOMJS_VERSION 2.1.1
