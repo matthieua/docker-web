@@ -48,4 +48,5 @@ RUN echo "RACK_ENV=test" | tee -a /etc/environment
 # firefox
 RUN apt-get update && apt-get install firefox -y --force-yes --fix-missing
 ENV DISPLAY ":99.0"
+RUN start-stop-daemon --start --quiet --pidfile /tmp/xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- :99 -screen 0 1024x768x24 -ac +extension GLX +render -noreset
 
