@@ -11,9 +11,6 @@ RUN apt-get install libssl-dev libpcrecpp0 libpcre3-dev wget git libreadline-dev
 RUN apt-get install libsasl2-2 libsasl2-dev libpq-dev -y --force-yes
 RUN mkdir /root/src
 
-# postgres
-RUN apt-get install -y --no-install-recommends postgresql-client && rm -rf /var/lib/apt/lists/*
-
 # phantomjs
 ENV PHANTOMJS_VERSION 2.1.1
 RUN \
@@ -30,6 +27,9 @@ RUN \
   ln -s /srv/var/casperjs/bin/casperjs /usr/bin/casperjs && \
   apt-get autoremove -y && \
   apt-get clean all
+
+# postgres
+RUN apt-get install -y --no-install-recommends postgresql-client && rm -rf /var/lib/apt/lists/*
 
 # node
 RUN cd /root/src && wget http://nodejs.org/dist/v0.12.7/node-v0.12.7-linux-x64.tar.gz && tar -xzvf node-v0.12.7-linux-x64.tar.gz && sudo mv ./node-v0.12.7-linux-x64/lib/* /usr/lib/ && sudo mv ./node-v0.12.7-linux-x64/bin/* /usr/bin/
